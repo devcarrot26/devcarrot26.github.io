@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devcarrot26 | 신선한 코드로 자라나는 앱 스튜디오</title>
+  
+  <!-- Google Fonts & Tailwind CSS CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#FF7029',
+              'orange-dark': '#E85810',
+              'orange-light': '#FFF3EB',
+              green: '#2DAE5B',
+              'green-dark': '#238947',
+              'green-light': '#EDF8F1',
+              dark: '#191E24',
+              charcoal: '#333D4B',
+              bg: '#F8FAFC',
+              card: '#FFFFFF',
+              border: '#E2E8F0'
+            }
+          },
+          fontFamily: {
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'Pretendard', 'sans-serif']
+          },
+          boxShadow: {
+            'soft': '0 8px 30px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 20px 35px -10px rgba(255, 112, 41, 0.12), 0 10px 15px -3px rgba(0, 0, 0, 0.05)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Smooth transitions and custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1F5F9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+    .badge-glow {
+      box-shadow: 0 0 16px rgba(255, 112, 41, 0.25);
+    }
+  </style>
+</head>
+<body class="bg-brand-bg text-brand-charcoal font-sans antialiased selection:bg-brand-orange selection:text-white min-h-screen flex flex-col justify-between">
+
+  <!-- ================= HEADER & NAVIGATION ================= -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-brand-border/80 transition-all duration-300" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange rounded-xl p-1">
+        <!-- Minimal Flat Carrot SVG Logo -->
+        <div class="w-10 h-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+          <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- 3 Green Leaves -->
+            <path d="M50 16 C43 23 44 38 50 42 C56 38 57 23 50 16Z" fill="#2DAE5B"/>
+            <path d="M37 25 C31 30 33 43 40 45 C44 39 42 28 37 25Z" fill="#2DAE5B"/>
+            <path d="M63 25 C69 30 67 43 60 45 C56 39 58 28 63 25Z" fill="#2DAE5B"/>
+            <!-- Triangle Carrot Body -->
+            <path d="M28 46 C28 46 72 46 72 46 C67 68 53 88 50 90 C47 88 33 68 28 46Z" fill="#FF7029"/>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-extrabold text-2xl tracking-tight text-brand-dark flex items-center">
+            Devcarrot<span class="text-brand-orange font-black">26</span>
+          </span>
+          <span class="text-[10px] tracking-widest text-gray-400 font-semibold uppercase -mt-1">Mobile Studio</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-[15px] font-medium text-gray-600">
+        <a href="#about" class="hover:text-brand-orange transition-colors">스튜디오 소개</a>
+        <a href="#apps" class="hover:text-brand-orange transition-colors">출시 앱 (Portfolio)</a>
+        <a href="#philosophy" class="hover:text-brand-orange transition-colors">개발 철학</a>
+        <a href="#tech" class="hover:text-brand-orange transition-colors">기술 스택</a>
+        <a href="#contact" class="hover:text-brand-orange transition-colors">문의하기</a>
+      </nav>
+
+      <!-- CTA Button -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" 
+           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-brand-dark text-white hover:bg-black transition-all shadow-sm hover:shadow active:scale-95">
+          <i class="fa-brands fa-google-play text-brand-orange"></i>
+          <span>Google Play</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl text-gray-700 hover:bg-gray-100 transition-colors focus:outline-none" aria-label="메뉴 열기">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer Nav -->
+    <div id="mobileDrawer" class="hidden md:hidden border-b border-brand-border bg-white px-6 py-6 space-y-4 shadow-xl">
+      <div class="flex flex-col space-y-3 font-medium text-gray-700">
+        <a href="#about" class="mobile-nav-link py-2 border-b border-gray-100">스튜디오 소개</a>
+        <a href="#apps" class="mobile-nav-link py-2 border-b border-gray-100">출시 앱 (Portfolio)</a>
+        <a href="#philosophy" class="mobile-nav-link py-2 border-b border-gray-100">개발 철학</a>
+        <a href="#tech" class="mobile-nav-link py-2 border-b border-gray-100">기술 스택</a>
+        <a href="#contact" class="mobile-nav-link py-2">문의하기</a>
+      </div>
+      <div class="pt-2">
+        <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" 
+           class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold bg-brand-dark text-white">
+          <i class="fa-brands fa-google-play text-brand-orange"></i>
+          Google Play 스토어 방문
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden relative">
+    <!-- Subtle Background Glows -->
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-r from-orange-200/40 via-green-100/30 to-orange-100/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Text Left Column -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-orange-light border border-orange-200 text-brand-orange font-semibold text-xs tracking-wide uppercase">
+            <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+            Independent Mobile App Studio
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-dark tracking-tight leading-[1.18]">
+            신선한 코드로 자라나는 앱,<br class="hidden sm:inline">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange via-orange-500 to-amber-500">Devcarrot26</span>
+          </h1>
+
+          <p class="text-lg sm:text-xl text-gray-600 max-w-2xl leading-relaxed font-normal mx-auto lg:mx-0">
+            복잡한 군더더기는 덜어내고, 사용자가 매일 느끼는 본질적인 가치에 집중합니다. 
+            가볍고 기민한 완성도로 스마트폰 속 일상을 한 뼘 더 편리하고 건강하게 만듭니다.
+          </p>
+
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+            <a href="#apps" class="px-7 py-3.5 rounded-2xl bg-brand-orange text-white font-semibold text-base shadow-lg shadow-orange-500/25 hover:bg-brand-orange-dark hover:shadow-orange-600/35 transition-all transform active:scale-95 flex items-center gap-2">
+              <span>출시 앱 살펴보기</span>
+              <i class="fa-solid fa-arrow-down text-sm"></i>
+            </a>
+            <a href="#about" class="px-7 py-3.5 rounded-2xl bg-white border border-gray-200 text-gray-700 font-semibold text-base hover:bg-gray-50 hover:border-gray-300 transition-all active:scale-95 flex items-center gap-2">
+              <span>스튜디오 소개</span>
+              <i class="fa-solid fa-arrow-right text-xs text-gray-400"></i>
+            </a>
+          </div>
+
+          <!-- Feature Pills -->
+          <div class="pt-6 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs sm:text-sm text-gray-500 font-medium">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-brand-green"></i> 100% 네이티브 성능
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-brand-green"></i> 미니멀 Flat UX
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-brand-green"></i> 지속적인 기능 업데이트
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Phone Mockup Right Column -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-72 sm:w-80">
+            <!-- Ambient Card Backing -->
+            <div class="absolute -inset-2 bg-gradient-to-tr from-brand-orange/30 to-brand-green/20 rounded-[48px] blur-xl opacity-60"></div>
+            
+            <!-- Phone Shell -->
+            <div class="relative bg-brand-dark rounded-[44px] p-3 shadow-2xl ring-1 ring-white/20">
+              <!-- Camera Notch -->
+              <div class="absolute top-6 left-1/2 -translate-x-1/2 w-24 h-4 bg-black rounded-full z-20 flex items-center justify-end px-3">
+                <div class="w-2 h-2 rounded-full bg-[#1b1b1b]"></div>
+              </div>
+              
+              <!-- Screen Canvas -->
+              <div class="bg-slate-50 rounded-[34px] overflow-hidden pt-8 pb-6 px-4 flex flex-col justify-between h-[520px] border border-gray-100">
+                <!-- App Top Bar Inside Screen -->
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center text-xs text-gray-400 px-1 pt-1 font-mono">
+                    <span>09:41</span>
+                    <div class="flex items-center gap-1.5">
+                      <i class="fa-solid fa-wifi text-[10px]"></i>
+                      <i class="fa-solid fa-battery-full text-xs"></i>
+                    </div>
+                  </div>
+
+                  <!-- Studio Brand Header inside Phone -->
+                  <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center p-1.5">
+                      <svg viewBox="0 0 100 100" class="w-full h-full" fill="none">
+                        <path d="M50 16 C43 23 44 38 50 42 C56 38 57 23 50 16Z" fill="#2DAE5B"/>
+                        <path d="M37 25 C31 30 33 43 40 45 C44 39 42 28 37 25Z" fill="#2DAE5B"/>
+                        <path d="M63 25 C69 30 67 43 60 45 C56 39 58 28 63 25Z" fill="#2DAE5B"/>
+                        <path d="M28 46 H72 C67 68 53 88 50 90 C47 88 33 68 28 46Z" fill="#FF7029"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-sm text-gray-900 leading-tight">Devcarrot26</h4>
+                      <p class="text-[11px] text-brand-green font-medium">● 최적화 엔진 가동 중</p>
+                    </div>
+                  </div>
+
+                  <!-- Dynamic Quick Mini Showcase on Phone -->
+                  <div class="space-y-2">
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-wider px-1">최근 출시 프로젝트</p>
+                    
+                    <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-400 flex items-center justify-center text-white text-sm">
+                          <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <div>
+                          <p class="text-xs font-bold text-gray-800">단순 집중 타이머</p>
+                          <p class="text-[10px] text-gray-400">생산성 • 유틸리티</p>
+                        </div>
+                      </div>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-green-50 text-brand-green font-semibold">Live</span>
+                    </div>
+
+                    <div class="bg-white p-3 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-white text-sm">
+                          <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <div>
+                          <p class="text-xs font-bold text-gray-800">루틴 당근 트래커</p>
+                          <p class="text-[10px] text-gray-400">습관 형성</p>
+                        </div>
+                      </div>
+                      <span class="text-[10px] px-2 py-0.5 rounded-full bg-orange-50 text-brand-orange font-semibold">Beta</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bottom Status -->
+                <div class="bg-gradient-to-r from-orange-50 to-emerald-50 p-3 rounded-2xl text-center border border-orange-100/60">
+                  <p class="text-xs font-semibold text-brand-dark">매일 더 유용하고 신선하게</p>
+                  <p class="text-[10px] text-gray-500 mt-0.5">Google Play Console Certified</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT & PHILOSOPHY ================= -->
+  <section id="about" class="py-20 bg-white border-y border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-orange mb-3">About Devcarrot26</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-brand-dark tracking-tight">
+          잘 자란 당근처럼 단단하고 건강한 앱을 만듭니다
+        </p>
+        <p class="mt-4 text-base sm:text-lg text-gray-600 leading-relaxed">
+          Devcarrot26은 쓸데없이 무거운 기능과 성가신 광고로 가득 찬 모바일 환경에 대한 작은 물음에서 출발했습니다. 
+          필요한 순간에 가장 빠르게 응답하며, 쓸수록 기분 좋은 일상 앱을 독립적으로 연구하고 서비스합니다.
+        </p>
+      </div>
+
+      <!-- 3 Core Philosophy Cards -->
+      <div id="philosophy" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- 1 -->
+        <div class="bg-brand-bg rounded-3xl p-8 border border-brand-border/80 hover:shadow-card-hover transition-all duration-300 group">
+          <div class="w-14 h-14 rounded-2xl bg-orange-100/70 text-brand-orange flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-feather-pointed"></i>
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark mb-3">극도의 가벼움 &amp; 미니멀</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            필요 없는 리소스는 덜어내어 10MB 미만의 가벼운 다운로드 크기와 빠른 실행 속도를 지향합니다. 기기 자원을 낭비하지 않습니다.
+          </p>
+        </div>
+
+        <!-- 2 -->
+        <div class="bg-brand-bg rounded-3xl p-8 border border-brand-border/80 hover:shadow-card-hover transition-all duration-300 group">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-100/70 text-brand-green flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-hand-pointer"></i>
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark mb-3">직관적인 단일 목적 UX</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            매뉴얼을 읽지 않아도 첫 3초 안에 어떻게 쓰는지 이해되는 명확한 인터페이스와 부드러운 반응을 최우선으로 설계합니다.
+          </p>
+        </div>
+
+        <!-- 3 -->
+        <div class="bg-brand-bg rounded-3xl p-8 border border-brand-border/80 hover:shadow-card-hover transition-all duration-300 group">
+          <div class="w-14 h-14 rounded-2xl bg-slate-200/70 text-brand-dark flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </div>
+          <h3 class="text-xl font-bold text-brand-dark mb-3">사용자 중심의 빠른 주기 배포</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            구글 플레이 리뷰와 사용자 피드백을 실시간으로 확인하고, 지속적인 유지보수와 기능 개선을 신속하게 릴리즈합니다.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= OUR APPS SHOWCASE (DYNAMIC & EXPANDABLE) ================= -->
+  <section id="apps" class="py-24 bg-brand-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">Portfolio &amp; Products</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-dark tracking-tight mt-1">
+            Devcarrot26 출시 &amp; 개발 앱
+          </h2>
+          <p class="text-gray-500 text-sm sm:text-base mt-2">
+            현재 서비스 중인 애플리케이션과 곧 공개될 프로젝트를 확인하세요.
+          </p>
+        </div>
+
+        <!-- Quick Search Bar -->
+        <div class="relative w-full md:w-72">
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+          <input type="text" id="appSearchInput" placeholder="앱 이름 또는 태그 검색..." 
+                 class="w-full pl-10 pr-4 py-2.5 bg-white border border-brand-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-transparent transition-all">
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap items-center gap-2 mb-10" id="categoryFilterContainer">
+        <button class="filter-btn active-filter px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all" data-category="all">
+          전체보기 (<span id="count-all">0</span>)
+        </button>
+        <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white border border-brand-border text-gray-600 hover:border-gray-300 transition-all" data-category="productivity">
+          생산성 / 유틸リティ
+        </button>
+        <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white border border-brand-border text-gray-600 hover:border-gray-300 transition-all" data-category="lifestyle">
+          라이프스타일 / 습관
+        </button>
+        <button class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white border border-brand-border text-gray-600 hover:border-gray-300 transition-all" data-category="health">
+          헬스케어 / 운동
+        </button>
+      </div>
+
+      <!-- App Card Grid (Rendered Dynamically via APPS_DATA) -->
+      <div id="appsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Developer Info Banner (Ease of adding new apps) -->
+      <div class="mt-14 p-6 sm:p-8 rounded-3xl bg-white border border-dashed border-gray-300 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200 text-brand-orange flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-code-fork"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-900 text-base">새로운 앱을 계속해서 준비 중입니다</h4>
+            <p class="text-xs sm:text-sm text-gray-500 mt-0.5">
+              코드 상단의 <code class="px-1.5 py-0.5 rounded bg-gray-100 text-brand-orange font-mono text-xs">APPS_DATA</code> 배열에 새 데이터만 넣으면 웹사이트에 즉시 반영됩니다.
+            </p>
+          </div>
+        </div>
+        <button onclick="openAddGuideModal()" class="px-4 py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-semibold transition-colors shrink-0 flex items-center gap-2">
+          <i class="fa-solid fa-circle-info"></i> 앱 추가 가이드 보기
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= TECH STACK & ENGINEERING ================= -->
+  <section id="tech" class="py-20 bg-white border-t border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand-green">Engineering Stack</span>
+        <h2 class="text-3xl font-extrabold text-brand-dark tracking-tight mt-1">
+          신뢰할 수 있는 모바일 아키텍처
+        </h2>
+        <p class="text-gray-500 text-sm sm:text-base mt-2">
+          안드로이드 최신 표준 권장 사항과 모던 클린 아키텍처를 기반으로 안정적인 소프트웨어를 빌드합니다.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        
+        <div class="p-5 rounded-2xl bg-brand-bg border border-brand-border flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
+          <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-lg mb-3">
+            <i class="fa-brands fa-android"></i>
+          </div>
+          <span class="font-bold text-sm text-gray-800">Kotlin &amp; Compose</span>
+          <span class="text-[11px] text-gray-400 mt-0.5">선언형 네이티브 UI</span>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-brand-bg border border-brand-border flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
+          <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg mb-3">
+            <i class="fa-solid fa-cubes"></i>
+          </div>
+          <span class="font-bold text-sm text-gray-800">Clean Architecture</span>
+          <span class="text-[11px] text-gray-400 mt-0.5">MVVM &amp; MVI 패턴</span>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-brand-bg border border-brand-border flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg mb-3">
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <span class="font-bold text-sm text-gray-800">Room &amp; DataStore</span>
+          <span class="text-[11px] text-gray-400 mt-0.5">오프라인 퍼스트 DB</span>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-brand-bg border border-brand-border flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg mb-3">
+            <i class="fa-solid fa-cloud"></i>
+          </div>
+          <span class="font-bold text-sm text-gray-800">Supabase &amp; Firebase</span>
+          <span class="text-[11px] text-gray-400 mt-0.5">실시간 동기화 클라우드</span>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-brand-bg border border-brand-border flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
+          <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg mb-3">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <span class="font-bold text-sm text-gray-800">On-Device &amp; AI</span>
+          <span class="text-[11px] text-gray-400 mt-0.5">경량 머신러닝 연동</span>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-brand-bg border border-brand-border flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
+          <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-lg mb-3">
+            <i class="fa-solid fa-gauge-high"></i>
+          </div>
+          <span class="font-bold text-sm text-gray-800">Performance</span>
+          <span class="text-[11px] text-gray-400 mt-0.5">배터리 및 메모리 최적화</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT & GOOGLE PLAY DEVELOPER ================= -->
+  <section id="contact" class="py-24 bg-brand-bg relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left: Google Play Developer Profile Card -->
+        <div class="lg:col-span-5 space-y-6">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">Google Play Developer</span>
+            <h2 class="text-3xl font-extrabold text-brand-dark tracking-tight mt-1">스토어에서 직접 만나보세요</h2>
+            <p class="text-gray-600 text-sm sm:text-base mt-2">
+              구글 플레이 스토어의 Devcarrot26 공식 개발자 페이지에서 최신 업데이트 및 앱 다운로드가 가능합니다.
+            </p>
+          </div>
+
+          <!-- Official Developer Badge Card -->
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-brand-border shadow-soft relative overflow-hidden">
+            <div class="flex items-center gap-4">
+              <!-- Carrot Icon -->
+              <div class="w-16 h-16 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center p-2 shrink-0">
+                <svg viewBox="0 0 100 100" class="w-full h-full" fill="none">
+                  <path d="M50 16 C43 23 44 38 50 42 C56 38 57 23 50 16Z" fill="#2DAE5B"/>
+                  <path d="M37 25 C31 30 33 43 40 45 C44 39 42 28 37 25Z" fill="#2DAE5B"/>
+                  <path d="M63 25 C69 30 67 43 60 45 C56 39 58 28 63 25Z" fill="#2DAE5B"/>
+                  <path d="M28 46 H72 C67 68 53 88 50 90 C47 88 33 68 28 46Z" fill="#FF7029"/>
+                </svg>
+              </div>
+              <div>
+                <span class="text-xs font-semibold text-brand-orange bg-orange-50 px-2 py-0.5 rounded-md">Google Play Registered</span>
+                <h3 class="text-xl font-bold text-gray-900 mt-1">Devcarrot26</h3>
+                <p class="text-xs text-gray-500">Android Application Studio</p>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-gray-100 space-y-3 text-sm text-gray-600">
+              <div class="flex items-center justify-between">
+                <span>공식 등록 상태</span>
+                <span class="font-semibold text-brand-green flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-brand-green"></span> 정상 서비스 중
+                </span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>보안 및 정책</span>
+                <span class="font-medium text-gray-700">Google Play 2026 규격 준수</span>
+              </div>
+            </div>
+
+            <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" 
+               class="mt-6 w-full py-3.5 rounded-2xl bg-brand-dark text-white font-semibold text-sm flex items-center justify-center gap-2 hover:bg-black transition-colors">
+              <i class="fa-brands fa-google-play text-brand-orange"></i>
+              <span>공식 개발자 프로필 방문</span>
+            </a>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white border border-brand-border text-xs text-gray-500 space-y-1">
+            <p><i class="fa-regular fa-envelope text-brand-orange mr-1.5"></i> <strong>개발자 직접 문의:</strong> contact@devcarrot26.com</p>
+            <p><i class="fa-regular fa-clock text-brand-green mr-1.5"></i> <strong>응답 시간:</strong> 평일 기준 24시간 이내</p>
+          </div>
+        </div>
+
+        <!-- Right: Inquiry / Feedback Form -->
+        <div class="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-brand-border shadow-soft">
+          <h3 class="text-2xl font-bold text-brand-dark mb-2">제휴 및 앱 피드백 보내기</h3>
+          <p class="text-gray-500 text-sm mb-8">새로운 기능 제안, 버그 제보, 협업 문의를 환영합니다.</p>
+
+          <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="userName" class="block text-xs font-bold text-gray-700 uppercase mb-2">이름 또는 기업명</label>
+                <input type="text" id="userName" required placeholder="홍길동"
+                       class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition-all">
+              </div>
+              <div>
+                <label for="userEmail" class="block text-xs font-bold text-gray-700 uppercase mb-2">이메일 주소</label>
+                <input type="email" id="userEmail" required placeholder="you@domain.com"
+                       class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition-all">
+              </div>
+            </div>
+
+            <div>
+              <label for="inquiryType" class="block text-xs font-bold text-gray-700 uppercase mb-2">문의 유형</label>
+              <select id="inquiryType" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition-all">
+                <option value="app_feedback">출시 앱 피드백 및 개선 제안</option>
+                <option value="bug_report">버그 제보 및 오류 수정 요청</option>
+                <option value="collaboration">개발 및 비즈니스 협업 제휴</option>
+                <option value="other">기타 일반 문의</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="userMessage" class="block text-xs font-bold text-gray-700 uppercase mb-2">메시지 내용</label>
+              <textarea id="userMessage" rows="4" required placeholder="자세한 내용을 입력해주세요..."
+                        class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition-all resize-none"></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn"
+                    class="w-full py-4 rounded-2xl bg-brand-orange text-white font-bold text-base hover:bg-brand-orange-dark transition-all shadow-md shadow-orange-500/20 active:scale-[0.99] flex items-center justify-center gap-2">
+              <i class="fa-regular fa-paper-plane"></i>
+              <span>메시지 전송하기</span>
+            </button>
+          </form>
+
+          <!-- Success Alert Message Box -->
+          <div id="formSuccessToast" class="hidden mt-4 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-start gap-3">
+            <i class="fa-solid fa-circle-check text-emerald-500 text-lg mt-0.5"></i>
+            <div>
+              <p class="font-bold">메시지가 안전하게 전송되었습니다!</p>
+              <p class="text-xs text-emerald-700 mt-0.5">Devcarrot26 팀에서 확인 후 남겨주신 이메일로 회신드리겠습니다.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-white border-t border-brand-border py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-gray-100">
+        
+        <!-- Brand identity -->
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 flex items-center justify-center">
+            <svg viewBox="0 0 100 100" class="w-full h-full" fill="none">
+              <path d="M50 16 C43 23 44 38 50 42 C56 38 57 23 50 16Z" fill="#2DAE5B"/>
+              <path d="M37 25 C31 30 33 43 40 45 C44 39 42 28 37 25Z" fill="#2DAE5B"/>
+              <path d="M63 25 C69 30 67 43 60 45 C56 39 58 28 63 25Z" fill="#2DAE5B"/>
+              <path d="M28 46 H72 C67 68 53 88 50 90 C47 88 33 68 28 46Z" fill="#FF7029"/>
+            </svg>
+          </div>
+          <span class="font-display font-extrabold text-xl text-brand-dark">Devcarrot26</span>
+          <span class="text-xs text-gray-400">| 모바일 앱 개발 스튜디오</span>
+        </div>
+
+        <!-- Links -->
+        <div class="flex flex-wrap items-center gap-6 text-xs text-gray-500 font-medium">
+          <a href="#about" class="hover:text-brand-orange transition-colors">회사소개</a>
+          <a href="#apps" class="hover:text-brand-orange transition-colors">제품군</a>
+          <button onclick="openModal('privacyModal')" class="hover:text-brand-orange transition-colors">개인정보처리방침</button>
+          <button onclick="openModal('termsModal')" class="hover:text-brand-orange transition-colors">서비스이용약관</button>
+          <a href="#contact" class="hover:text-brand-orange transition-colors">문의처</a>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+        <p>&copy; 2026 Devcarrot26 Studio. All rights reserved.</p>
+        <p class="text-center sm:text-right">Designed for clean mobile experience &amp; Google Play Console readiness.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= APP DETAILS MODAL ================= -->
+  <div id="appModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-100 flex flex-col">
+      <!-- Modal Header -->
+      <div class="p-6 border-b border-gray-100 flex items-center justify-between sticky top-0 bg-white/95 backdrop-blur z-10">
+        <div class="flex items-center gap-3">
+          <div id="modalAppIcon" class="w-12 h-12 rounded-2xl flex items-center justify-center text-white text-xl"></div>
+          <div>
+            <h3 id="modalAppTitle" class="text-lg font-bold text-gray-900 leading-tight">앱 제목</h3>
+            <span id="modalAppCategory" class="text-xs text-gray-500">카테고리</span>
+          </div>
+        </div>
+        <button onclick="closeModal('appModal')" class="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-800 transition-colors">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 space-y-6 text-sm text-gray-600">
+        <!-- Visual Screen Placeholder / Highlights -->
+        <div class="rounded-2xl bg-gradient-to-br from-slate-50 to-orange-50/40 p-6 border border-orange-100/60 text-center">
+          <div id="modalVisualBanner" class="py-4">
+            <!-- Dynamic Icon / Tagline -->
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-gray-900 text-sm mb-2">애플리케이션 개요</h4>
+          <p id="modalAppDesc" class="leading-relaxed"></p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-gray-900 text-sm mb-2">핵심 기능 및 특장점</h4>
+          <ul id="modalAppFeatures" class="space-y-2">
+            <!-- Dynamic Features -->
+          </ul>
+        </div>
+
+        <div class="p-4 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-between text-xs">
+          <div>
+            <span class="text-gray-400 block">버전 정보</span>
+            <span id="modalAppVersion" class="font-semibold text-gray-700">v1.0.0</span>
+          </div>
+          <div>
+            <span class="text-gray-400 block">업데이트 상태</span>
+            <span id="modalAppStatus" class="font-semibold text-brand-green">출시 완료</span>
+          </div>
+          <div>
+            <span class="text-gray-400 block">지원 플랫폼</span>
+            <span class="font-semibold text-gray-700">Android 8.0+</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-6 border-t border-gray-100 bg-gray-50 flex items-center justify-end gap-3 rounded-b-3xl">
+        <button onclick="closeModal('appModal')" class="px-5 py-2.5 rounded-xl border border-gray-300 font-semibold text-gray-600 hover:bg-white text-xs">
+          닫기
+        </button>
+        <a id="modalPlayStoreLink" href="#" target="_blank" rel="noopener noreferrer" 
+           class="px-5 py-2.5 rounded-xl bg-brand-orange text-white font-semibold text-xs hover:bg-brand-orange-dark transition-all flex items-center gap-2">
+          <i class="fa-brands fa-google-play"></i>
+          <span>구글 플레이에서 열기</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ADD APP DEVELOPER GUIDE MODAL ================= -->
+  <div id="addGuideModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-gray-100">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+          <i class="fa-solid fa-carrot text-brand-orange"></i>
+          <span>새로운 앱 등록 가이드</span>
+        </h3>
+        <button onclick="closeModal('addGuideModal')" class="text-gray-400 hover:text-gray-700">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <p class="text-xs sm:text-sm text-gray-600 mb-4 leading-relaxed">
+        추후 새 앱을 등록하실 때는 본 파일의 <code class="bg-gray-100 text-brand-orange px-1 py-0.5 rounded font-mono">APPS_DATA</code> 배열에 아래 형태의 객체만 추가해 주시면 화면에 자동으로 렌더링됩니다.
+      </p>
+
+      <pre class="bg-slate-900 text-slate-100 text-xs p-4 rounded-2xl overflow-x-auto font-mono mb-5">
+{
+  id: 'my-new-app',
+  title: '새로운 앱 이름',
+  category: 'productivity', // productivity, lifestyle, health
+  categoryLabel: '생산성',
+  status: 'released', // 'released', 'beta', 'in_dev'
+  statusLabel: '출시 완료',
+  iconBg: 'from-orange-500 to-amber-500',
+  iconClass: 'fa-solid fa-lightbulb',
+  shortDesc: '한 줄로 표현하는 매력적인 앱 설명입니다.',
+  fullDesc: '상세 모달에 나타날 풍부한 앱 소개글입니다.',
+  features: ['주요 기능 1', '주요 기능 2', '주요 기능 3'],
+  playStoreUrl: 'https://play.google.com/store/apps/details?id=...',
+  version: 'v1.0.0'
+}</pre>
+
+      <div class="flex justify-end">
+        <button onclick="closeModal('addGuideModal')" class="px-5 py-2.5 rounded-xl bg-brand-dark text-white text-xs font-semibold hover:bg-black">
+          확인했습니다
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PRIVACY POLICY MODAL ================= -->
+  <div id="privacyModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 max-h-[80vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-bold text-gray-900">개인정보처리방침</h3>
+        <button onclick="closeModal('privacyModal')" class="text-gray-400 hover:text-gray-700"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="text-xs text-gray-600 space-y-3 leading-relaxed">
+        <p><strong>Devcarrot26</strong> (이하 "스튜디오")은 이용자의 개인정보를 매우 소중하게 생각하며, 구글 플레이 개발자 정책 및 개인정보 보호법을 철저히 준수합니다.</p>
+        <p>1. <strong>수집 항목:</strong> 스튜디오의 모바일 애플리케이션은 기본적으로 불필요한 개인 식별 정보를 서버로 전송하여 수집하지 않는 '오프라인 우선' 정책을 기본으로 합니다.</p>
+        <p>2. <strong>문의 시 수집:</strong> 웹사이트 문의 폼을 통해 이용자가 직접 입력한 이름 및 이메일은 오직 문의 회신용으로만 일시 활용되며, 다른 용도로 공유되지 않습니다.</p>
+        <p>3. <strong>앱 권한:</strong> 각 앱에서 요구하는 카메라, 저장소 등의 권한은 해당 기능 실행 시에만 작동하며 외부로 유출되지 않습니다.</p>
+      </div>
+      <div class="mt-6 flex justify-end">
+        <button onclick="closeModal('privacyModal')" class="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 text-xs font-semibold">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TERMS MODAL ================= -->
+  <div id="termsModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 max-h-[80vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-bold text-gray-900">서비스 이용약관</h3>
+        <button onclick="closeModal('termsModal')" class="text-gray-400 hover:text-gray-700"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="text-xs text-gray-600 space-y-3 leading-relaxed">
+        <p>Devcarrot26이 개발 및 배포하는 모바일 소프트웨어는 구글 플레이 스토어 약관을 따르며, 사용자 편의를 위해 지속적으로 유지 관리됩니다.</p>
+        <p>모든 지식재산권은 Devcarrot26에 귀속되며, 무단 역공학 및 상업적 복제를 금합니다.</p>
+      </div>
+      <div class="mt-6 flex justify-end">
+        <button onclick="closeModal('termsModal')" class="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 text-xs font-semibold">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    /**
+     * =========================================================================
+     * 1. APP DATA REPOSITORY (추후 새 앱 추가 시 여기에 객체만 추가하면 됩니다!)
+     * =========================================================================
+     */
+    const APPS_DATA = [
+      {
+        id: 'nura',
+        title: '누가썼노',
+        category: 'lifestyle',
+        categoryLabel: '금융 / 라이프스타일',
+        status: 'in_dev',
+        statusLabel: '출시 예정',
+        iconBg: 'from-cyan-600 to-blue-500',
+        iconClass: 'fa-solid fa-wallet',
+        shortDesc: '무지출 챌린지 & 감정 소비 밈(Meme) 가계부, 누가썼노(NUGA)',
+        fullDesc: '복잡한 은행 연동(마이데이터) 없이, 오늘 내가 참은 소비(방어한 금액)나 홧김에 쓴 돈(시발비용)을 수동으로 톡톡 입력하면 이를 위트 있는 밈(Meme) 영수증이나 팩폭 멘트 카드로 만들어주는 초간단 기록 앱입니다.',
+        features: [
+          '클라우드 연결 없는 온디바이스 지출 기록',
+          '무지출 챌린지',
+          '로그인이나 가입 없이 사용',
+          '소비 습관을 유머러스하게 공유'
+        ],
+        playStoreUrl: '#',
+        version: 'v0.1.0-dev'
+      },
+      {
+        id: 'nadurun',
+        title: '나두런',
+        category: 'health',
+        categoryLabel: '헬스케어 / 운동',
+        status: 'in_dev',
+        statusLabel: '출시 예정',
+        iconBg: 'from-cyan-600 to-blue-500',
+        iconClass: 'fa-solid fa-person-walking',
+        shortDesc: '달리기가 처음이신분, 달리기가 두려운 분도 나두런과 함께면 달리실 수 있습니다.',
+        fullDesc: '달리기가 처음이신 분들도 AI가 계획한대로 따라 달리다보면 어느세 대회에서 달리고 있는 자신을 발견하게 될거에요. ',
+        features: [
+          'AI가 훈련 스케줄을 관리하고 계획 ',
+          '근력 훈련도 스케줄에 포함',
+          '로그인이나 가입 없이 사용'
+        ],
+        playStoreUrl: '#',
+        version: 'v0.1.0-dev'
+      }
+    ];
+
+    /**
+     * =========================================================================
+     * 2. DYNAMIC APP RENDERING & FILTERING
+     * =========================================================================
+     */
+    let currentCategory = 'all';
+    let searchQuery = '';
+
+    function getStatusBadge(status, label) {
+      if (status === 'released') {
+        return `<span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-brand-green border border-emerald-200">
+                  <i class="fa-solid fa-circle-check text-[9px] mr-1"></i>${label}
+                </span>`;
+      } else if (status === 'beta') {
+        return `<span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-orange-50 text-brand-orange border border-orange-200">
+                  <i class="fa-solid fa-flask text-[9px] mr-1"></i>${label}
+                </span>`;
+      } else {
+        return `<span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gray-100 text-gray-600 border border-gray-200">
+                  <i class="fa-solid fa-clock text-[9px] mr-1"></i>${label}
+                </span>`;
+      }
+    }
+
+    function renderApps() {
+      const container = document.getElementById('appsGrid');
+      const countAll = document.getElementById('count-all');
+      if (countAll) countAll.textContent = APPS_DATA.length;
+
+      // Filter by category & search query
+      const filtered = APPS_DATA.filter(app => {
+        const matchesCategory = (currentCategory === 'all') || (app.category === currentCategory);
+        const matchesSearch = searchQuery === '' || 
+          app.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          app.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          app.categoryLabel.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-16 text-center bg-white rounded-3xl border border-brand-border p-8">
+            <i class="fa-solid fa-magnifying-glass text-4xl text-gray-300 mb-3 block"></i>
+            <h4 class="text-base font-bold text-gray-700">검색된 애플리케이션이 없습니다</h4>
+            <p class="text-xs text-gray-400 mt-1">다른 검색어를 입력하시거나 카테고리 필터를 변경해 보세요.</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+
+      filtered.forEach(app => {
+        html += `
+          <div class="bg-white rounded-3xl p-6 sm:p-7 border border-brand-border hover:border-orange-200 hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <!-- Top Header: Icon & Badges -->
+              <div class="flex items-start justify-between gap-4 mb-5">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr ${app.iconBg} text-white flex items-center justify-center text-2xl shadow-sm group-hover:scale-105 transition-transform shrink-0">
+                  <i class="${app.iconClass}"></i>
+                </div>
+                <div class="flex flex-col items-end gap-1.5">
+                  ${getStatusBadge(app.status, app.statusLabel)}
+                  <span class="text-[11px] font-medium text-gray-400">${app.categoryLabel}</span>
+                </div>
+              </div>
+
+              <!-- Title & Desc -->
+              <h3 class="text-lg font-bold text-gray-900 group-hover:text-brand-orange transition-colors mb-2">
+                ${app.title}
+              </h3>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-6">
+                ${app.shortDesc}
+              </p>
+            </div>
+
+            <!-- Bottom Action Row -->
+            <div class="pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
+              <button onclick="openAppDetail('${app.id}')" 
+                      class="text-xs font-semibold text-gray-600 hover:text-brand-dark flex items-center gap-1.5 px-3 py-2 rounded-xl hover:bg-gray-100 transition-colors">
+                <span>상세 정보</span>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+              </button>
+
+              ${app.status === 'released' ? `
+                <a href="${app.playStoreUrl}" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-brand-dark text-white text-xs font-semibold hover:bg-black transition-colors">
+                  <i class="fa-brands fa-google-play text-brand-orange"></i>
+                  <span>스토어 설치</span>
+                </a>
+              ` : `
+                <span class="text-xs font-medium text-gray-400 px-3 py-2">출시 준비 중</span>
+              `}
+            </div>
+          </div>
+        `;
+      });
+
+      // Append an attractive "+ Coming Soon" Scalable Placeholder Card
+      if (currentCategory === 'all' && searchQuery === '') {
+        html += `
+          <div onclick="openAddGuideModal()" class="cursor-pointer bg-gradient-to-br from-orange-50/50 to-slate-50/50 rounded-3xl p-6 sm:p-7 border-2 border-dashed border-orange-200 hover:border-brand-orange transition-all duration-300 flex flex-col items-center justify-center text-center group min-h-[260px]">
+            <div class="w-14 h-14 rounded-2xl bg-white text-brand-orange border border-orange-200 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-brand-orange group-hover:text-white transition-all shadow-sm">
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <h4 class="text-base font-bold text-gray-800 group-hover:text-brand-orange transition-colors">새 앱 준비 중</h4>
+            <p class="text-xs text-gray-500 max-w-xs mt-1.5 leading-relaxed">
+              Devcarrot26은 항상 새로운 아이디어를 코드로 심고 있습니다. 다음 프로젝트도 기대해 주세요!
+            </p>
+            <span class="mt-4 text-[11px] font-semibold text-brand-orange underline underline-offset-4">새 앱 등록 가이드 확인</span>
+          </div>
+        `;
+      }
+
+      container.innerHTML = html;
+    }
+
+    /**
+     * =========================================================================
+     * 3. APP DETAILS MODAL CONTROLLER
+     * =========================================================================
+     */
+    function openAppDetail(appId) {
+      const app = APPS_DATA.find(a => a.id === appId);
+      if (!app) return;
+
+      const modalIcon = document.getElementById('modalAppIcon');
+      modalIcon.className = `w-12 h-12 rounded-2xl bg-gradient-to-tr ${app.iconBg} text-white flex items-center justify-center text-xl shrink-0`;
+      modalIcon.innerHTML = `<i class="${app.iconClass}"></i>`;
+
+      document.getElementById('modalAppTitle').textContent = app.title;
+      document.getElementById('modalAppCategory').textContent = `${app.categoryLabel} • ${app.statusLabel}`;
+      document.getElementById('modalAppDesc').textContent = app.fullDesc;
+      document.getElementById('modalAppVersion').textContent = app.version;
+      document.getElementById('modalAppStatus').textContent = app.statusLabel;
+
+      // Banner Inside
+      document.getElementById('modalVisualBanner').innerHTML = `
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-brand-dark text-xs font-bold shadow-sm mb-2">
+          <i class="fa-brands fa-android text-brand-green"></i> Devcarrot26 Verified
+        </div>
+        <p class="text-xs text-gray-500 font-medium">${app.shortDesc}</p>
+      `;
+
+      // Features
+      const featList = document.getElementById('modalAppFeatures');
+      featList.innerHTML = app.features.map(f => `
+        <li class="flex items-start gap-2.5 text-xs text-gray-700">
+          <i class="fa-solid fa-check text-brand-orange mt-0.5"></i>
+          <span>${f}</span>
+        </li>
+      `).join('');
+
+      // PlayStore Link
+      const playBtn = document.getElementById('modalPlayStoreLink');
+      if (app.status === 'released') {
+        playBtn.href = app.playStoreUrl;
+        playBtn.style.display = 'inline-flex';
+      } else {
+        playBtn.style.display = 'none';
+      }
+
+      openModal('appModal');
+    }
+
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    function openAddGuideModal() {
+      openModal('addGuideModal');
+    }
+
+    // Modal background click close
+    window.addEventListener('click', (e) => {
+      ['appModal', 'addGuideModal', 'privacyModal', 'termsModal'].forEach(id => {
+        const modal = document.getElementById(id);
+        if (e.target === modal) {
+          closeModal(id);
+        }
+      });
+    });
+
+    /**
+     * =========================================================================
+     * 4. UI EVENT LISTENERS & FILTER INITIALIZATION
+     * =========================================================================
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderApps();
+
+      // Category filters
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => {
+            b.classList.remove('active-filter', 'bg-brand-orange', 'text-white');
+            b.classList.add('bg-white', 'text-gray-600');
+          });
+
+          btn.classList.remove('bg-white', 'text-gray-600');
+          btn.classList.add('active-filter', 'bg-brand-orange', 'text-white');
+
+          currentCategory = btn.getAttribute('data-category');
+          renderApps();
+        });
+      });
+
+      // Filter default active styling
+      const activeBtn = document.querySelector('.filter-btn.active-filter');
+      if (activeBtn) {
+        activeBtn.classList.add('bg-brand-orange', 'text-white');
+      }
+
+      // Search bar
+      const searchInput = document.getElementById('appSearchInput');
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        renderApps();
+      });
+
+      // Mobile drawer toggle
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      mobileBtn.addEventListener('click', () => {
+        mobileDrawer.classList.toggle('hidden');
+      });
+
+      // Close mobile drawer on navigation click
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileDrawer.classList.add('hidden');
+        });
+      });
+    });
+
+    /**
+     * =========================================================================
+     * 5. CONTACT FORM SUBMISSION HANDLER
+     * =========================================================================
+     */
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('submitBtn');
+      const toast = document.getElementById('formSuccessToast');
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i><span>전송 중...</span>`;
+
+      // Simulated network dispatch
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<i class="fa-regular fa-paper-plane"></i><span>메시지 전송하기</span>`;
+        document.getElementById('contactForm').reset();
+        
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 6000);
+      }, 700);
+    }
+  </script>
+</body>
+</html>
